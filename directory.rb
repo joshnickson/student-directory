@@ -3,9 +3,11 @@ def print_header
     puts "-------------"
 end
 def print(students)
-  students.each_with_index do |student, index| 
-    puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)" if student[:name].length < 12
-  end
+  counter = 0
+    while counter < students.count
+      puts "#{students[counter][:name]} (#{students[counter][:cohort]} cohort)"
+      counter += 1 
+    end
 end
 def print_footer(names)
   puts "Overall, we have #{names.count} great students"
