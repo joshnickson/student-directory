@@ -1,16 +1,16 @@
 def print_header
-    puts "The students of Villains Academy"
-    puts "-------------"
+    puts "The students of Villains Academy".center(50)
+    puts "-------------".center(50)
 end
 def print(students)
   counter = 0
     while counter < students.count
-      puts "#{students[counter][:name]} (#{students[counter][:cohort]} cohort)"
+      puts "#{students[counter][:name]} (#{students[counter][:cohort]} cohort)".center(50)
       counter += 1 
     end
 end
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students"
+  puts "Overall, we have #{names.count} great students".center(50)
 end
 
 def input_students
