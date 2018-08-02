@@ -22,7 +22,6 @@ end
 def check_if_month(month)
   return ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december', ''].include? month.downcase
 end
-
 def input_students
   puts "Please enter the names of the students followed by the cohort"
   puts "To finish, just fit return twice"
@@ -38,13 +37,33 @@ def input_students
       end
     cohort = 'august' if cohort.empty?
     students << {name: name, cohort: cohort.to_sym}
-    puts "Now we have #{students.count} students"
+    message_1 = "Now we have #{students.count} student"
+    students.count == 1 ? message_2 = '' : message_2 = "s"
+    message = message_1 + message_2
+    puts message.center(50)
   end
   students
 end
 
-students = input_students
-print_header
-prints(students)
-print_footer(students)
-print(students)
+def interactive_menu
+  students = []
+  loop do
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit"
+    selection = gets.chomp
+    case selection
+    when '1'
+      students = input_students
+    when '2'
+      print_header
+      prints(students)
+      print_footer(students)
+    when '9'
+      exit
+    else "I don't know what you meant, try again"
+    end
+  end
+end
+
+interactive_menu
