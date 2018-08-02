@@ -2,15 +2,21 @@ def print_header
     puts "The students of Villains Academy".center(50)
     puts "-------------".center(50)
 end
-def print(students)
-  counter = 0
-    while counter < students.count
-      puts "#{students[counter][:name]} (#{students[counter][:cohort]} cohort)".center(50)
-      counter += 1 
+def prints(students)
+  cohort_list = students.each.map{|person| person[:cohort]}.uniq
+  cohort_list.each do |month| 
+    puts month
+    students.each do |student|
+      puts "#{student[:name]} (#{student[:cohort]} cohort)".center(50) if student[:cohort] == month
     end
+  end
 end
+
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students".center(50)
+  message_1 = "Overall, we have #{names.count} great student"
+  names.count == 1 ? message_2 = '' : message_2 = "s"
+  message = message_1 + message_2
+  puts message.center(50)
 end
 
 def check_if_month(month)
@@ -30,8 +36,8 @@ def input_students
         cohort = gets.chomp
         puts "Please enter the cohort correctly" if !check_if_month(cohort)
       end
-    cohort = "august" if cohort.empty?
-    students << {name: name, cohort: cohort}
+    cohort = 'august' if cohort.empty?
+    students << {name: name, cohort: cohort.to_sym}
     puts "Now we have #{students.count} students"
   end
   students
@@ -39,5 +45,6 @@ end
 
 students = input_students
 print_header
-print(students)
+prints(students)
 print_footer(students)
+print(students)
